@@ -10,5 +10,8 @@ export const siteConfig = {
     { label: "How it works", href: "#how-it-works" },
     { label: "Features", href: "#features" },
     { label: "Tournaments", href: "#tournaments" },
+    { label: "Tournaments", href: "#tournaments" },
+    { label: "Tournaments", href: "#tournaments" },
+    { label: "Tournaments", href: "#tournaments" },
   ],
 } as const;
