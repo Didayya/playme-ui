@@ -1,35 +1,46 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import { siteConfig } from "@/config/site";
 
 export function Navbar() {
   return (
-    <header className="nav">
-      <Link href="/" className="brand" aria-label="PlayMe home">
-        <Image
-          src={siteConfig.logo}
-          alt="PlayMe"
-          width={150}
-          height={70}
-          priority
-        />
-      </Link>
-
-      <nav className="nav-links" aria-label="Main navigation">
-        {siteConfig.nav.map((item) => (
-          <a key={item.href} href={item.href}>
-            {item.label}
-          </a>
-        ))}
-      </nav>
-
-      <div className="nav-actions">
-        <Link href="/login" className="text-button">
-          Log in
+    <header className="sticky top-0 z-50 border-b border-black/10 bg-play-paper/90 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-8">
+        <Link href="/" className="relative h-12 w-28">
+          <Image
+            src={siteConfig.logo}
+            alt="PlayMe"
+            fill
+            className="object-contain object-left"
+            priority
+          />
         </Link>
-        <Link href="/signup" className="button button-small">
-          Play now
-        </Link>
+        <nav className="hidden items-center gap-8 md:flex">
+          {siteConfig.nav.map((i) => (
+            <a
+              key={i.href}
+              href={i.href}
+              className="text-sm font-bold hover:text-play-red"
+            >
+              {i.label}
+            </a>
+          ))}
+        </nav>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/login"
+            className="hidden rounded-full px-4 py-2 text-sm font-bold sm:block"
+          >
+            Log in
+          </Link>
+          <Link
+            href="/signup"
+            className="rounded-full bg-play-red px-5 py-2.5 text-sm font-black text-white shadow-[4px_4px_0_#111]"
+          >
+            Play now
+          </Link>
+        </div>
       </div>
     </header>
   );

@@ -4,10 +4,9 @@ export interface Tournament {
   id: string;
   title: string;
   category: string;
-  description: string;
   players: number;
   maxPlayers: number;
   status: TournamentStatus;
-  prize?: string;
-  startsAt?: string;
+  prize: string;
+  startsAt: string;
 }

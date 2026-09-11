@@ -1,4 +1,5 @@
-import "../../styles/dashboard.css";
+import DashboardHeader from "@/features/dashboard/components/DashboardHeader";
+import DashboardSidebar from "@/features/dashboard/components/DashboardSidebar";
 
 export default function DashboardLayout({
   children,
@@ -6,9 +7,16 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="dashboard-shell">
-      <div className="dashboard-content">
-        <main>{children}</main>
+    <div className="min-h-screen bg-[#f4f4f0] text-black">
+      <div className="flex min-h-screen">
+        {/* Sidebar */}
+        <DashboardSidebar />
+
+        {/* Main application area */}
+        <div className="flex min-w-0 flex-1 flex-col">
+          <DashboardHeader />
+          <main className="min-w-0 flex-1">{children}</main>
+        </div>
       </div>
     </div>
   );
