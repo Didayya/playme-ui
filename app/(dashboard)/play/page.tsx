@@ -1,39 +1,42 @@
-import DashboardStats from "@/features/dashboard/components/DashboardStats";
-import FamilyInviteCard from "@/features/dashboard/components/FamilyInviteCard";
-import { Leaderboard } from "@/features/dashboard/components/Leaderboard";
-import RecentGames from "@/features/dashboard/components/RecentGames";
-import TournamentSection from "@/features/dashboard/components/TournamentSection";
-import WelcomeBanner from "@/features/dashboard/components/WelcomeBanner";
+import { ProtectedRoute } from "@/components/protected/ProtectedRoute";
+import DashboardStats from "@/components/dashboard/DashboardStats";
+import FamilyInviteCard from "@/components/dashboard/FamilyInviteCard";
+import { Leaderboard } from "@/components/dashboard/Leaderboard";
+import RecentGames from "@/components/dashboard/RecentGames";
+import TournamentSection from "@/components/dashboard/TournamentSection";
+import WelcomeBanner from "@/components/dashboard/WelcomeBanner";
 
 export default function PlayPage() {
   return (
-    <div className="min-w-0 px-4 pb-24 pt-6 sm:px-6 lg:px-8 lg:pb-8">
-      <div className="mx-auto w-full max-w-[1600px]">
-        {/* Welcome */}
-        <WelcomeBanner />
+    <ProtectedRoute requiredPermission="user:profile:read">
+      <div className="min-w-0 px-4 pb-24 pt-6 sm:px-6 lg:px-8 lg:pb-8">
+        <div className="mx-auto w-full max-w-[1600px]">
+          {/* Welcome */}
+          <WelcomeBanner />
 
-        {/* Stats */}
-        <div className="mt-6">
-          <DashboardStats />
-        </div>
-
-        {/* Main dashboard */}
-        <div className="mt-6 grid min-w-0 grid-cols-1 gap-6 xl:grid-cols-3">
-          {/* Main column */}
-          <div className="min-w-0 space-y-6 xl:col-span-2">
-            <TournamentSection />
-            <RecentGames />
+          {/* Stats */}
+          <div className="mt-6">
+            <DashboardStats />
           </div>
 
-          {/* Right column */}
-          <aside className="min-w-0">
+          {/* Main dashboard */}
+          <div className="mt-6 grid min-w-0 grid-cols-1 gap-6 xl:grid-cols-3">
+            {/* Main column */}
             <div className="min-w-0 space-y-6 xl:col-span-2">
-              <Leaderboard />
-              <FamilyInviteCard />
+              <TournamentSection />
+              <RecentGames />
             </div>
-          </aside>
+
+            {/* Right column */}
+            <aside className="min-w-0">
+              <div className="min-w-0 space-y-6 xl:col-span-2">
+                <Leaderboard />
+                <FamilyInviteCard />
+              </div>
+            </aside>
+          </div>
         </div>
       </div>
-    </div>
+    </ProtectedRoute>
   );
 }

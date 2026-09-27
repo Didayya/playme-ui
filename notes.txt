@@ -1,0 +1,66 @@
+mobile view on all screens need work done on it.
+
+// AuthContext.tsx
+import { createContext, useState, useEffect, useContext } from 'react';
+
+const AuthContext = createContext(null);
+
+export const AuthProvider = ({ children }) => {
+  // 1. The data gets stored HERE in the react state
+  const [user, setUser] = useState(null); 
+  const [loading, setLoading] = useState(true);
+a
+  useEffect(() => {
+    async function loadUser() {
+      try {
+        const response = await fetch('/api/auth/me');
+        if (response.ok) {
+          const data = await response.json();
+          // 2. The response data is saved into the state
+          setUser(data); 
+        }
+      } catch (error) {
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadUser();
+  }, []);
+
+  // 3. The state is passed into the Context Provider value
+  return (
+    <AuthContext.Provider value={{ user, loading }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => useContext(AuthContext);
+
+// Add this inside your AuthProvider component
+useEffect(() => {
+  if (!isAuthenticated) return;
+
+  // Poll the backend every 60 seconds to keep permissions fresh
+  const interval = setInterval(() => {
+    verifyUser();
+  }, 60000); 
+
+  return () => clearInterval(interval);
+}, [isAuthenticated, verifyUser]);
+
+
+
+
+'use client';
+import { useAuth } from '@/context/AuthContext';
+
+export default function ProfilePage() {
+  // It is pulled directly from the context state here:
+  const { user, loading } = useAuth(); 
+
+  if (loading) return <p>Loading...</p>;
+  
+  return <h1>Welcome back, {user?.name}!</h1>;
+}
