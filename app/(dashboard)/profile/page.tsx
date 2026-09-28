@@ -2,15 +2,10 @@
 
 import { PaywallGate } from "@/components/protected/PaywallGate";
 
-export default function TournamentCreationPage() {
-  
+export default function ProfilePage() {
   return (
     <main className="min-h-screen bg-play-paper p-6 lg:p-10 text-black">
-
-      <PaywallGate
-        requiredPermission="user:read"
-        featureName="Live Cash Tournaments"
-      >
+      <PaywallGate requiredPermission="user:readc" featureName="Live Cash Tournaments">
         <div className="space-y-8">
           {/* Quick Metrics Grid */}
           <section className="grid gap-4 md:grid-cols-3">

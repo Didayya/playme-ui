@@ -1,20 +1,18 @@
 "use client";
 
+import Link from "next/link";
+import axios from "axios";
+
 import { FormEvent, useState, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
-import axios from "axios";
-import axiosInstance, { saveAccessToken, saveRefreshToken } from "@/lib/axios";
-
-import { useAuth } from "@/context/AuthContext";
+import { handleSignup } from "@/api/auth";
 import { AuthLayout } from "../AuthLayout";
+import { saveAccessToken, saveRefreshToken } from "@/lib/axios";
 
 export function SignupForm() {
   const router = useRouter();
-  const { refreshAuth } = useAuth();
 
-  // Field values state
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -95,10 +93,9 @@ export function SignupForm() {
     };
 
     try {
-      const response = await axiosInstance.post("/app/auth/signup", payload);
-      saveAccessToken(response.data.accessToken);
-      saveRefreshToken(response.data.accessToken)
-      await refreshAuth();
+      const response = await handleSignup(payload);
+      saveAccessToken(response.accessToken);
+      saveRefreshToken(response.accessToken);
 
       router.push("/play");
       router.refresh();
@@ -218,7 +215,7 @@ export function SignupForm() {
 
         <button
           disabled={loading || isFormInvalid}
-          className="w-full rounded-2xl bg-play-red px-5 py-4 font-black text-white shadow-[5px_5px_0_#111] disabled:opacity-40 disabled:shadow-none disabled:translate-x-0.5 disabled:translate-y-0.5 transition-all"
+          className="w-full rounded-2xl bg-play-red px-5 py-4 font-black text-white shadow-[5px_5px_0_#111] transition-all"
         >
           {loading ? "Please wait..." : "Create account"}
         </button>

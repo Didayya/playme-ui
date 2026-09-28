@@ -1,14 +1,15 @@
+
 import { ProtectedRoute } from "@/components/protected/ProtectedRoute";
-import DashboardStats from "@/components/dashboard/DashboardStats";
-import FamilyInviteCard from "@/components/dashboard/FamilyInviteCard";
 import { Leaderboard } from "@/components/dashboard/Leaderboard";
-import RecentGames from "@/components/dashboard/RecentGames";
-import TournamentSection from "@/components/dashboard/TournamentSection";
-import WelcomeBanner from "@/components/dashboard/WelcomeBanner";
+import { WelcomeBanner } from "@/components/dashboard/WelcomeBanner";
+import { DashboardStats } from "@/components/dashboard/DashboardStats";
+import { TournamentSection } from "@/components/dashboard/TournamentSection";
+import { RecentGames } from "@/components/dashboard/RecentGames";
+import { FamilyInviteCard } from "@/components/dashboard/FamilyInviteCard";
 
 export default function PlayPage() {
   return (
-    <ProtectedRoute requiredPermission="user:profile:read">
+    <ProtectedRoute requiredPermission="user:read">
       <div className="min-w-0 px-4 pb-24 pt-6 sm:px-6 lg:px-8 lg:pb-8">
         <div className="mx-auto w-full max-w-[1600px]">
           {/* Welcome */}

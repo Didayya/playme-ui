@@ -3,7 +3,7 @@ import Link from "next/link";
 export function FamilyInviteCard() {
   return (
     <section className="relative overflow-hidden rounded-2xl bg-play-green p-5 text-black">
-      <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full border-[12px] border-black/10" />
+      <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full border-12 border-black/10" />
 
       <div className="relative">
         <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-black text-play-green">

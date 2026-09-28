@@ -8,7 +8,7 @@ export default function TournamentsPage() {
     <main className="min-h-screen bg-play-paper p-6 lg:p-10 text-black">
 
       <PaywallGate
-        requiredPermission="user:profile:read"
+        requiredPermission="user:read"
         featureName="Live Cash Tournaments"
       >
         <div className="space-y-8">

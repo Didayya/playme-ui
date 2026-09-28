@@ -35,7 +35,7 @@ export const dashboardTournaments = [
     status: "LIVE",
     prize: "₦50,000",
     startsAt: "Live now",
-    description: "",
+    description: "David's birthday",
   },
   {
     id: "2",
@@ -46,7 +46,7 @@ export const dashboardTournaments = [
     status: "UPCOMING",
     prize: "₦100,000",
     startsAt: "Today · 8:00 PM",
-    description: "",
+    description: "Alex's wedding",
   },
   {
     id: "3",
@@ -57,7 +57,7 @@ export const dashboardTournaments = [
     status: "UPCOMING",
     prize: "Free",
     startsAt: "Sat · 6:00 PM",
-    description: "",
+    description: "Daniel's naming ceremony",
   },
 ] as const;
 
@@ -92,3 +92,10 @@ export const recentGames = [
     date: "Mon",
   },
 ];
+
+export const user = {
+  id: "f07e3234-50fb-4cb1-a402-68ea00cbc5e8",
+  username: "Alex",
+  role: "USER",
+  permissions: ["user:create", "user:read", "user:update", "user:delete"],
+};

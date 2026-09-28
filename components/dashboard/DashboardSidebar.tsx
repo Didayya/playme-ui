@@ -4,15 +4,14 @@ import Link from "next/link";
 
 import { usePathname, useRouter } from "next/navigation";
 import { navigation, secondaryNavigation } from "@/constants/navigation";
+import { handleLogout } from "@/api/auth";
 
 export function DashboardSidebar() {
   const pathname = usePathname();
   const router = useRouter();
 
-  async function handleLogout() {
-    await fetch("/api/auth/logout", {
-      method: "POST",
-    });
+  async function doLogout() {
+    await handleLogout();
 
     router.push("/login");
     router.refresh();
@@ -114,7 +113,7 @@ export function DashboardSidebar() {
             </div>
 
             <button
-              onClick={handleLogout}
+              onClick={doLogout}
               className="mt-4 flex w-full items-center gap-3 rounded-xl px-3 py-3 text-sm font-bold text-white/50 transition hover:bg-white/10 hover:text-white"
             >
               <span>↪</span>

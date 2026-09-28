@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+
 import { siteConfig } from "@/config/site";
 
 interface AuthLayoutProps {

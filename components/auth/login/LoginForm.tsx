@@ -1,14 +1,16 @@
 "use client";
 
+import Link from "next/link";
+
 import { FormEvent, useState, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+
+import { handleLogin } from "@/api/auth";
 import { AuthLayout } from "../AuthLayout";
-import { useAuth } from "@/context/AuthContext";
+import { saveAccessToken, saveRefreshToken } from "@/lib/axios";
 
 export function LoginForm() {
   const router = useRouter();
-  const { login } = useAuth();
 
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [emailError, setEmailError] = useState("");
@@ -36,9 +38,11 @@ export function LoginForm() {
     setLoading(true);
     setServerError("");
 
-    const success = await login(formData);
+    const response = await handleLogin(formData);
+    saveAccessToken(response.accessToken);
+    saveRefreshToken(response.refreshToken);
 
-    if (success) {
+    if (response) {
       router.push("/play");
       router.refresh();
     } else {
@@ -100,7 +104,7 @@ export function LoginForm() {
 
         <button
           disabled={loading || isFormInvalid}
-          className="w-full rounded-2xl bg-play-red px-5 py-4 font-black text-white shadow-[5px_5px_0_#111] disabled:opacity-40 disabled:shadow-none disabled:translate-x-0.5 disabled:translate-y-0.5 transition-all"
+          className="w-full rounded-2xl bg-play-cyan px-5 py-4 font-black text-white shadow-[5px_5px_0_#111] transition-all"
         >
           {loading ? "Please wait..." : "Log in"}
         </button>

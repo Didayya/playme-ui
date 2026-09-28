@@ -1,28 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import axiosInstance from "@/lib/axios";
-import { User } from "@/types/user";
 
+import { useAuth } from "@/context/AuthContext";
 
 export function DashboardHeader() {
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    async function loadUser() {
-      try {
-        const response = await axiosInstance.get("/app/me");
-        const data = await response.data;
-
-        setUser(data);
-      } catch {
-        // Ignore failed user lookup here.
-      }
-    }
-
-    loadUser();
-  }, []);
+  const { user } = useAuth();
 
   const initials = user?.username
     ?.split(" ")

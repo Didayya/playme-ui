@@ -2,7 +2,7 @@
 
 import { PaywallGate } from "@/components/protected/PaywallGate";
 
-export default function TournamentCreationPage() {
+export default function SettingsPage() {
   
   return (
     <main className="min-h-screen bg-play-paper p-6 lg:p-10 text-black">

@@ -2,13 +2,13 @@
 
 import { PaywallGate } from "@/components/protected/PaywallGate";
 
-export default function TournamentCreationPage() {
+export default function LeaderboardPage() {
   
   return (
     <main className="min-h-screen bg-play-paper p-6 lg:p-10 text-black">
 
       <PaywallGate
-        requiredPermission="user:read"
+        requiredPermission="user:readc"
         featureName="Live Cash Tournaments"
       >
         <div className="space-y-8">
